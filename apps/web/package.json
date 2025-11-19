@@ -2,6 +2,7 @@
   "name": "@image-alt-generator/web",
   "private": true,
   "version": "0.0.0",
+  "description": "Interface web para geração de alt text usando AI da Azion",
   "type": "module",
   "scripts": {
     "dev": "vite",

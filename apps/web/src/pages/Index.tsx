@@ -245,8 +245,17 @@ const Index = () => {
             AI Alt Generator
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Gere alt text e descrições detalhadas para suas imagens usando inteligência
-            artificial da Azion.
+            Gere alt text e descrições detalhadas para suas imagens usando
+            inteligência artificial da{" "}
+            <a
+              href="https://www.azion.com/pt-br/documentacao/produtos/ai/ai-inference/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors"
+            >
+              Azion
+            </a>
+            .
           </p>
         </header>
 
@@ -323,7 +332,9 @@ const Index = () => {
                     <div className="flex items-start gap-3">
                       <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
                       <div className="flex-1 space-y-2">
-                        <p className="text-destructive font-semibold">Erro ao processar</p>
+                        <p className="text-destructive font-semibold">
+                          Erro ao processar
+                        </p>
                         <p className="text-sm text-destructive/80">{error}</p>
                       </div>
                     </div>
@@ -368,7 +379,9 @@ const Index = () => {
                           aria-label="Alt text gerado"
                         />
                         <Button
-                          onClick={() => copyToClipboard(result.altText, "Alt text")}
+                          onClick={() =>
+                            copyToClipboard(result.altText, "Alt text")
+                          }
                           variant="outline"
                           size="icon"
                           aria-label="Copiar alt text"
@@ -407,10 +420,16 @@ const Index = () => {
                     {/* HTML Snippet */}
                     <div className="space-y-2">
                       <CodeBlock
-                        code={generateHtmlSnippet(result.altText, result.longDesc)}
+                        code={generateHtmlSnippet(
+                          result.altText,
+                          result.longDesc
+                        )}
                         onCopy={() =>
                           copyToClipboard(
-                            generateHtmlSnippet(result.altText, result.longDesc),
+                            generateHtmlSnippet(
+                              result.altText,
+                              result.longDesc
+                            ),
                             "Snippet HTML"
                           )
                         }
@@ -431,8 +450,19 @@ const Index = () => {
         )}
 
         {/* Footer */}
-        <footer className="text-center text-sm text-muted-foreground">
-          <p>Desenvolvido com IA para acessibilidade digital</p>
+        <footer className="text-center text-sm text-muted-foreground space-y-1">
+          <p>Desenvolvido com AI para acessibilidade digital</p>
+          <p>
+            Feito com 🧡 pelo time de DevRel da{" "}
+            <a
+              href="https://www.azion.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors"
+            >
+              Azion
+            </a>
+          </p>
         </footer>
       </div>
     </div>
