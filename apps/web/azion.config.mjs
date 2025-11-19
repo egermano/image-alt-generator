@@ -24,26 +24,26 @@ export default {
   },
   storage: [
     {
-      name: '$BUCKET_NAME',
-      prefix: '$BUCKET_PREFIX',
+      name: 'ai-alt-generator',
+      prefix: '20251119180314',
       dir: './.edge/assets',
       edgeAccess: 'read_only'
     }
   ],
   connectors: [
     {
-      name: '$CONNECTOR_NAME',
+      name: 'ai-alt-generator',
       active: true,
       type: 'storage',
       attributes: {
-        bucket: '$BUCKET_NAME',
-        prefix: '$BUCKET_PREFIX'
+        bucket: 'ai-alt-generator',
+        prefix: '20251119180314'
       }
     }
   ],
   applications: [
     {
-      name: '$APPLICATION_NAME',
+      name: 'ai-alt-generator',
       rules: {
         request: [
           {
@@ -65,7 +65,7 @@ export default {
               {
                 type: 'set_connector',
                 attributes: {
-                  value: '$CONNECTOR_NAME'
+                  value: 'ai-alt-generator'
                 }
               },
               {
@@ -92,7 +92,7 @@ export default {
               {
                 type: 'set_connector',
                 attributes: {
-                  value: '$CONNECTOR_NAME'
+                  value: 'ai-alt-generator'
                 }
               },
               {
@@ -110,7 +110,7 @@ export default {
   ],
   workloads: [
     {
-      name: '$WORKLOAD_NAME',
+      name: 'ai-alt-generator',
       active: true,
       infrastructure: 1,
       protocols: {
@@ -123,13 +123,13 @@ export default {
       },
       deployments: [
         {
-          name: '$DEPLOYMENT_NAME',
+          name: 'ai-alt-generator',
           current: true,
           active: true,
           strategy: {
             type: 'default',
             attributes: {
-              application: '$APPLICATION_NAME'
+              application: 'ai-alt-generator'
             }
           }
         }

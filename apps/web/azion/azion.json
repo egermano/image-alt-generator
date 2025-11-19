@@ -1,13 +1,13 @@
 {
   "name": "ai-alt-generator",
-  "bucket": "",
+  "bucket": "ai-alt-generator",
   "preset": "react",
   "env": "production",
-  "prefix": "",
-  "not-first-run": false,
+  "prefix": "20251119180314",
+  "not-first-run": true,
   "function": [],
   "application": {
-    "id": 0,
+    "id": 1763583133,
     "name": "__DEFAULT__"
   },
   "domain": {
@@ -22,15 +22,36 @@
   "origin": null,
   "rules-engine": {
     "created": false,
-    "rules": null
+    "rules": [
+      {
+        "id": 497756,
+        "name": "Deliver Static Assets",
+        "phase": "request"
+      },
+      {
+        "id": 497757,
+        "name": "Redirect to index.html",
+        "phase": "request"
+      }
+    ]
   },
-  "cache-settings": null,
+  "cache-settings": [],
   "workloads": {
-    "id": 0,
-    "name": "",
-    "domains": null,
-    "url": "",
-    "deployment_id": null
+    "id": 1763583494,
+    "name": "ai-alt-generator",
+    "domains": [],
+    "url": "https://qkghz9yhhra.map.azionedge.net",
+    "deployment_id": [
+      {
+        "id": 171520,
+        "name": "ai-alt-generator"
+      }
+    ]
   },
-  "connectors": null
+  "connectors": [
+    {
+      "id": 1547,
+      "name": "ai-alt-generator"
+    }
+  ]
 }
