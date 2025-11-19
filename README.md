@@ -4,13 +4,21 @@ Um gerador inteligente de alt text e descrições detalhadas para imagens, desen
 
 **🌐 Live Demo:** <https://qkghz9yhhra.map.azionedge.net>
 
+## Features
+
+- 🖼️ **Image Upload**: Drag & drop or manual selection
+- 🤖 **AI Inference**: Image analysis and text generation with VLM model
+- 📝 **Alt Text**: Concise and accurate descriptions
+- 📖 **Long Descriptions**: Long descriptions for accessibility
+- 💻 **HTML Snippet**: Ready-to-use code with syntax highlighting
+
 ## Project Structure
 
 ```text
 ├── apps/
-│   ├── web/          # Aplicação web principal (React + Vite)
-│   └── serverless/   # Função serverless para processamento com AI Inference
-├── packages/         # Pacotes compartilhados (uso futuro)
+│   ├── web/          # Web application (React + Vite)
+│   └── serverless/   # Serverless function for AI Inference processing
+├── packages/         # Shared packages (future use)
 ├── pnpm-workspace.yaml
 └── package.json
 ```
@@ -43,64 +51,28 @@ pnpm dev
 - `pnpm lint` - Run linting across all packages
 - `pnpm clean` - Clean all node_modules and build artifacts
 
-## Tecnologias
+## Tech Stack
 
-Este projeto foi desenvolvido com:
+This project is built with:
 
-- **Aplicação Web**: Vite + React + TypeScript
+- **Web App**: Vite + React + TypeScript
 - **Interface**: shadcn/ui + Tailwind CSS
-- **Inteligência Artificial**: Azion AI Inference API
-- **Serverless**: Azion Edge Functions
-- **Gerenciador de Pacotes**: pnpm workspaces
-- **Arquitetura**: Monorepo com múltiplas aplicações
+- **Serverless**: [Azion Functions](https://www.azion.com/en/products/functions/)
+- **AI/LLM**: [Azion AI Inference](https://www.azion.com/en/products/ai-inference/)
 
-## Funcionalidades
+## Integration with Azion
 
-- 🖼️ **Upload de Imagens**: Drag & drop ou seleção manual
-- 🤖 **AI Inference**: Processamento com modelos de visão computacional
-- 📝 **Alt Text Inteligente**: Descrições concisas e precisas
-- 📖 **Descrições Detalhadas**: Textos longos para acessibilidade
-- 💻 **Snippet HTML**: Código pronto com syntax highlighting
-- 📋 **Cópia Rápida**: Um clique para copiar qualquer resultado
-- 🎨 **Interface Moderna**: Design responsivo e acessível
+This project uses the Azion platform for AI Inference processing and hosting:
 
-## Workspace Commands
+### AI Inference
 
-Run commands in specific workspaces:
+- **Model**: qwen-qwen25-vl-3b-instruct-awq
+- **Capabilities**: Image analysis and text generation with VLM model
 
-```sh
-# Run dev server for web app
-pnpm --filter @image-alt-generator/web dev
+### Serverless Functions
 
-# Build web app
-pnpm --filter @image-alt-generator/web build
+- **Location**: `apps/serverless/alt-generator.js`
+- **Functionality**: Processes image uploads and calls AI Inference API
+- **Performance**: Global execution on Azion edge
 
-# Install dependencies in web app
-pnpm --filter @image-alt-generator/web add <package-name>
-```
-
-## Integração com Azion
-
-Este projeto utiliza a plataforma Azion para processamento de AI Inference e hospedagem:
-
-### AI Inference API
-
-- **Modelo**: qwen-qwen25-vl-3b-instruct-awq
-- **Capacidades**: Análise de imagens e geração de texto
-- **Endpoint**: Edge Functions para processamento serverless
-
-### Edge Functions
-
-- **Localização**: `apps/serverless/alt-generator.js`
-- **Funcionalidade**: Processa uploads e chama a API de AI
-- **Performance**: Execução global na edge da Azion
-
-### Configuração
-
-Para configurar a integração com a Azion:
-
-1. Configure suas credenciais da Azion
-2. Deploy da Edge Function usando Azion CLI
-3. Atualize o endpoint da API no frontend
-
-Documentação: [Azion AI Inference](https://www.azion.com/pt-br/documentacao/produtos/ai/ai-inference/)
+Documentation: [Azion AI Inference](https://www.azion.com/pt-br/documentacao/produtos/ai/ai-inference/)
