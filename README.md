@@ -2,6 +2,8 @@
 
 Um gerador inteligente de alt text e descrições detalhadas para imagens, desenvolvido com AI da Azion. Este projeto utiliza uma arquitetura monorepo com pnpm workspaces para organização e escalabilidade.
 
+**🌐 Live Demo:** <https://qkghz9yhhra.map.azionedge.net>
+
 ## Project Structure
 
 ```text
