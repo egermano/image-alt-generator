@@ -1,9 +1,11 @@
-import { useState, useCallback, useRef } from "react";
-import { Upload, Copy, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { AlertCircle, CheckCircle2, Copy, Loader2, Upload } from "lucide-react";
+import { useCallback, useRef, useState } from "react";
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 // API endpoint para gerar alt text
 const API_ENDPOINT = "https://mupojq1z1uu.map.azionedge.net/alt-generator";
@@ -163,6 +165,70 @@ const Index = () => {
     [toast]
   );
 
+  const generateHtmlSnippet = useCallback((altText: string, longDesc: string) => {
+    return `<img 
+  src="sua-imagem.jpg" 
+  alt="${altText}"
+  title="${altText}"
+  aria-describedby="img-description"
+/>
+
+<!-- Descrição longa (opcional, para casos complexos) -->
+<div id="img-description" class="sr-only">
+  ${longDesc}
+</div>`;
+  }, []);
+
+  const CodeBlock = ({ code, onCopy }: { code: string; onCopy: () => void }) => (
+    <div className="relative">
+      <div className="bg-[#1e1e1e] rounded-lg border border-border overflow-hidden">
+        {/* Header da IDE */}
+        <div className="flex items-center justify-between px-4 py-2 bg-[#2d2d30] border-b border-[#3e3e42]">
+          <div className="flex items-center gap-2">
+            <div className="flex gap-1">
+              <div className="w-3 h-3 rounded-full bg-[#ff5f57]"></div>
+              <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+              <div className="w-3 h-3 rounded-full bg-[#28ca42]"></div>
+            </div>
+            <span className="text-sm text-[#cccccc] ml-2">snippet.html</span>
+          </div>
+          <Button
+            onClick={onCopy}
+            variant="ghost"
+            size="sm"
+            className="text-[#cccccc] hover:text-white hover:bg-[#3e3e42] h-7 px-2"
+          >
+            <Copy className="w-4 h-4 mr-1" />
+            Copiar
+          </Button>
+        </div>
+        
+        {/* Código com syntax highlighting */}
+        <div className="relative">
+          <SyntaxHighlighter
+            language="html"
+            style={vscDarkPlus}
+            customStyle={{
+              margin: 0,
+              padding: '16px',
+              background: '#1e1e1e',
+              fontSize: '14px',
+              lineHeight: '1.5',
+            }}
+            showLineNumbers={true}
+            lineNumberStyle={{
+              color: '#858585',
+              paddingRight: '16px',
+              minWidth: '40px',
+            }}
+          >
+            {code}
+          </SyntaxHighlighter>
+        </div>
+      </div>
+    </div>
+  );
+
   const handleNewUpload = useCallback(() => {
     resetState();
     if (fileInputRef.current) {
@@ -176,11 +242,11 @@ const Index = () => {
         {/* Header */}
         <header className="text-center space-y-3">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-            Alt Generator
+            AI Alt Generator
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Gere alt text e descrições detalhadas para suas imagens usando inteligência
-            artificial
+            artificial da Azion.
           </p>
         </header>
 
@@ -336,6 +402,19 @@ const Index = () => {
                           Copiar Descrição
                         </Button>
                       </div>
+                    </div>
+
+                    {/* HTML Snippet */}
+                    <div className="space-y-2">
+                      <CodeBlock
+                        code={generateHtmlSnippet(result.altText, result.longDesc)}
+                        onCopy={() =>
+                          copyToClipboard(
+                            generateHtmlSnippet(result.altText, result.longDesc),
+                            "Snippet HTML"
+                          )
+                        }
+                      />
                     </div>
 
                     <Button
