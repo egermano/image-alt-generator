@@ -1,73 +1,65 @@
-# Welcome to your Lovable project
+# Image Alt Generator Monorepo
 
-## Project info
+A monorepo for the image alt generator project using pnpm workspaces.
 
-**URL**: https://lovable.dev/projects/21fd6903-dbdb-4038-887f-d6e0ebd037cf
+## Project Structure
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/21fd6903-dbdb-4038-887f-d6e0ebd037cf) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```text
+├── apps/
+│   └── web/          # Main web application (React + Vite)
+├── packages/         # Shared packages (future use)
+├── pnpm-workspace.yaml
+└── package.json
 ```
 
-**Edit a file directly in GitHub**
+## Prerequisites
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Node.js >= 18.0.0
+- pnpm >= 9.0.0
 
-**Use GitHub Codespaces**
+## Getting Started
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```sh
+# Step 1: Clone the repository
+git clone <YOUR_GIT_URL>
 
-## What technologies are used for this project?
+# Step 2: Navigate to the project directory
+cd <YOUR_PROJECT_NAME>
+
+# Step 3: Install dependencies for all workspaces
+pnpm install
+
+# Step 4: Start the development server
+pnpm dev
+```
+
+## Available Scripts
+
+- `pnpm dev` - Start the web app development server
+- `pnpm build` - Build the web app for production
+- `pnpm lint` - Run linting across all packages
+- `pnpm clean` - Clean all node_modules and build artifacts
+
+## Technologies
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Web App**: Vite + React + TypeScript
+- **UI**: shadcn/ui + Tailwind CSS
+- **Package Manager**: pnpm workspaces
+- **Monorepo Structure**: Apps and packages organization
 
-## How can I deploy this project?
+## Workspace Commands
 
-Simply open [Lovable](https://lovable.dev/projects/21fd6903-dbdb-4038-887f-d6e0ebd037cf) and click on Share -> Publish.
+Run commands in specific workspaces:
 
-## Can I connect a custom domain to my Lovable project?
+```sh
+# Run dev server for web app
+pnpm --filter @image-alt-generator/web dev
 
-Yes, you can!
+# Build web app
+pnpm --filter @image-alt-generator/web build
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+# Install dependencies in web app
+pnpm --filter @image-alt-generator/web add <package-name>
+```
