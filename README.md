@@ -18,38 +18,9 @@ Um gerador inteligente de alt text e descrições detalhadas para imagens, desen
 ├── apps/
 │   ├── web/          # Web application (React + Vite)
 │   └── serverless/   # Serverless function for AI Inference processing
-├── packages/         # Shared packages (future use)
 ├── pnpm-workspace.yaml
 └── package.json
 ```
-
-## Prerequisites
-
-- Node.js >= 18.0.0
-- pnpm >= 9.0.0
-
-## Getting Started
-
-```sh
-# Step 1: Clone the repository
-git clone https://github.com/your-username/image-alt-generator.git
-
-# Step 2: Navigate to the project directory
-cd image-alt-generator
-
-# Step 3: Install dependencies for all workspaces
-pnpm install
-
-# Step 4: Start the development server
-pnpm dev
-```
-
-## Available Scripts
-
-- `pnpm dev` - Start the web app development server
-- `pnpm build` - Build the web app for production
-- `pnpm lint` - Run linting across all packages
-- `pnpm clean` - Clean all node_modules and build artifacts
 
 ## Tech Stack
 
