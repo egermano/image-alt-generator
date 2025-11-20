@@ -26,21 +26,21 @@ async function handleRequest(request, args) {
       });
     }
 
+    // Pega arquivo do form-data (campo "image")
+    const form = await request.formData();
+    const file = form.get("image");
+
+    const buf = await file.arrayBuffer();
+    const base64 = arrayBufferToBase64(buf);
+    const mime = file.type || "image/jpeg";
+    const dataUrl = `data:${mime};base64,${base64}`;
+
     // Config simples via args
     const model = args?.model || "qwen-qwen25-vl-3b-instruct-awq";
     const systemPrompt =
       args?.systemPrompt ||
       "You are an assistant that analyzes images and produces concise, accurate, SEO-optimized alt text in Brazilian Portuguese.";
     const temperature = Number(args?.temperature ?? 0.1);
-
-    // Pega arquivo do form-data (campo "image")
-    const form = await request.formData();
-    const file = form.get("image"); // assume que existe e é um File/Blob
-
-    const buf = await file.arrayBuffer();
-    const base64 = arrayBufferToBase64(buf);
-    const mime = file.type || "image/jpeg";
-    const dataUrl = `data:${mime};base64,${base64}`;
 
     // Mensagens no formato multimodal da doc
     const userInstruction = `Analyze the attached image and return a single JSON object with keys "altText" and "longDesc" in Brazilian Portuguese. Return only the JSON object.`;
@@ -55,20 +55,20 @@ async function handleRequest(request, args) {
       },
     ];
 
-    const modelInput = { messages, temperature, stream: false };
-
     // Chama Azion AI runtime
-    const aiResponse = await Azion.AI.run(model, modelInput);
+    const aiResponse = await Azion.AI.run(model, {
+      stream: false,
+      temperature,
+      messages,
+    });
 
     // Retorna a resposta do modelo como JSON (exemplo simples)
     return new Response(JSON.stringify(aiResponse), {
-      ...CORS_HEADERS,
       status: 200,
       headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
     });
   } catch (err) {
-    return new Response(JSON.stringify({ error: String(err) }), {
-      ...CORS_HEADERS,
+    return new Response(JSON.stringify({ error: err.toString() }), {
       status: 500,
       headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
     });
